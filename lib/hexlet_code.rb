@@ -8,6 +8,8 @@ module HexletCode
 
   def self.form_for(_object, options = {}, &_block)
     url = options[:url] || '#'
-    "<form action=\"#{url}\" method=\"post\"></form>"
+    fields = ''
+    fields = yield self if block_given?
+    Tag.build('form', action: url, method: 'post') { fields }
   end
 end
