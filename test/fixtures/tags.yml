@@ -1,0 +1,6 @@
+br: '<br>'
+hr: '<hr>'
+img: '<img src="path/to/image">'
+input_save: '<input type="submit" value="Save">'
+form: '<form action="#" method="post"></form>'
+form_users: '<form action="/users" method="post"></form>'
