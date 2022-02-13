@@ -13,6 +13,7 @@ module HexletCode
     def input(name, options = {})
       value = ''
       value = object.public_send(name) unless object.nil?
+      fields << label(name)
       fields << if options[:as] == :text
                   Tag.build('textarea', cols: 20, rows: 40, name: name) { value }
                 else
@@ -24,6 +25,10 @@ module HexletCode
       value = attrs[:value] || 'Save'
       name = attrs[:name] || 'commit'
       fields << Tag.build('input', name: name, type: 'submit', value: value)
+    end
+
+    def label(name)
+      Tag.build('label', for: name) { name.capitalize }
     end
   end
 end
