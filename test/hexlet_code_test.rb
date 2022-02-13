@@ -57,4 +57,15 @@ class HexletCodeTest < Minitest::Test
     end
     assert { html == expected_html }
   end
+
+  def test_form_for_with_submit
+    user = User.new job: 'hexlet'
+    expected_html = read_fixture_file('form_input_submit.html').gsub("\n", '')
+    html = HexletCode.form_for user do |f|
+      f.input :name
+      f.input :job
+      f.submit
+    end
+    assert { html == expected_html }
+  end
 end

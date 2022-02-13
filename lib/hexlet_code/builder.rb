@@ -19,5 +19,11 @@ module HexletCode
                   Tag.build('input', name: name, type: 'text', value: value)
                 end
     end
+
+    def submit(**attrs)
+      value = attrs[:value] || 'Save'
+      name = attrs[:name] || 'commit'
+      fields << Tag.build('input', name: name, type: 'submit', value: value)
+    end
   end
 end
