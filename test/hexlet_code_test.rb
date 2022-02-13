@@ -37,4 +37,24 @@ class HexletCodeTest < Minitest::Test
   def test_from_for_build_form_tag_with_block
     assert { ::HexletCode.form_for(@user) { |f| } == @tags['form'] }
   end
+
+  def test_form_for_with_input_field
+    user = User.new name: 'rob', job: 'hexlet'
+    expected_html = read_fixture_file('form_input.html').gsub("\n", '')
+    html = HexletCode.form_for user do |f|
+      f.input :name
+      f.input :job
+    end
+    assert { html == expected_html }
+  end
+
+  def test_form_for_with_fields
+    user = User.new name: 'rob', job: 'hexlet'
+    expected_html = read_fixture_file('form_input_textarea.html').gsub("\n", '')
+    html = HexletCode.form_for user do |f|
+      f.input :name
+      f.input :job, as: :text
+    end
+    assert { html == expected_html }
+  end
 end
